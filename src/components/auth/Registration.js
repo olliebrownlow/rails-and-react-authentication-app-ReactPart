@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Registration extends Component {
   constructor(props) {
@@ -22,7 +23,21 @@ export default class Registration extends Component {
   }
 
   handleSubmit(e) {
-    console.log("form submitted");
+    const { email, password, password_confirmation } = this.state;
+
+    axios.post("http://localhost:3001/registrations", {
+      user: {
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    },
+    { withCredentials: true }
+  ).then(response => {
+    console.log("registration response", response);
+  }).catch((err) => {
+    console.log("registration error", err);
+  });
     e.preventDefault();
   }
 
