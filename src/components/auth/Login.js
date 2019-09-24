@@ -30,7 +30,7 @@ export default class Login extends Component {
         password: password
       }
     },
-    // { withCredentials: true }
+    { withCredentials: true }
   )
   .then(response => {
     if (response.data.logged_in) {
